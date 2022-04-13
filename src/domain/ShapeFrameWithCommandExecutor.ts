@@ -1,6 +1,7 @@
 import {IShapeFrame, Point, ShapeType} from "./IShapeFrame";
-import {MoveShapeFrameCommand, ResizeShapeFrameCommand} from "./Commands";
 import {ICommandExecutor} from "./CommandExecutor";
+import {MoveShapeFrameCommand} from "./commands/MoveShapeFrameCommand";
+import {ResizeShapeFrameCommand} from "./commands/ResizeShapeFrameCommand";
 
 export class ShapeFrameWithCommandExecutor implements IShapeFrame {
     private commandExecutor: ICommandExecutor;

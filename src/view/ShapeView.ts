@@ -20,14 +20,15 @@ export abstract class ShapeView implements IShapeView {
     private readonly onShapeChanged: () => void;
     private readonly movingCrossView: MovingCrossView
 
-    constructor(canvas: CanvasRenderingContext2D, leftTop: PointView, rightBottom: PointView, editorController: EditorController, id: number, onShapeChanged: () => void) {
+    constructor(canvas: CanvasRenderingContext2D, shape: IShapeFrame, editorController: EditorController, onShapeChanged: () => void) {
         this.context2D = canvas;
-        this.leftTop = leftTop;
-        this.rightBottom = rightBottom;
+        this.leftTop = shape.getLeftTop();
+        this.rightBottom = shape.getRightBottom();
         this.editorController = editorController;
-        this.id = id;
+        this.id = shape.getId();
         this.onShapeChanged = onShapeChanged;
-        this.movingCrossView = new MovingCrossView(leftTop, this.context2D, this.rightBottom.x - this.leftTop.x, this.rightBottom.y - this.leftTop.y)
+        this.movingCrossView = new MovingCrossView(this.leftTop, this.context2D, this.rightBottom.x - this.leftTop.x, this.rightBottom.y - this.leftTop.y)
+        shape.doOnShapeMoved(this.doOnShapeMoved.bind(this))
     }
 
     abstract isPointInShape(x: number, y: number): boolean

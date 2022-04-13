@@ -76,16 +76,15 @@ export class EditorView {
         let shapeView: IShapeView
         switch (shape.getType()) {
             case ShapeType.Rectangle:
-                shapeView = new RectangleView(this.context2D, shape.getLeftTop(), shape.getRightBottom(), this.editorController, shape.getId(), this.onShapeChanged.bind(this))
+                shapeView = new RectangleView(this.context2D, shape, this.editorController, this.onShapeChanged.bind(this))
                 break;
             case ShapeType.Circle:
-                shapeView = new EllipseView(this.context2D, shape.getLeftTop(), shape.getRightBottom(), this.editorController, shape.getId(), this.onShapeChanged.bind(this))
+                shapeView = new EllipseView(this.context2D, shape, this.editorController, this.onShapeChanged.bind(this))
                 break;
             case ShapeType.Triangle:
-                shapeView = new TriangleView(this.context2D, shape.getLeftTop(), shape.getRightBottom(), this.editorController, shape.getId(), this.onShapeChanged.bind(this))
+                shapeView = new TriangleView(this.context2D, shape, this.editorController, this.onShapeChanged.bind(this))
                 break;
         }
-        shape.doOnShapeMoved(shapeView.doOnShapeMoved.bind(shapeView))
         this.shapes.set(shape.getId(), shapeView)
         this.render()
     }

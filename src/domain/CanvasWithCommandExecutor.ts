@@ -1,7 +1,7 @@
 import {IShapeFrame, ShapeType} from "./IShapeFrame";
 import {ICanvas} from "./ICanvas";
 import {ICommandExecutor} from "./CommandExecutor";
-import {AddShapeFrameCommand} from "./Commands";
+import {AddShapeFrameCommand} from "./commands/AddShapeFrameCommand";
 
 export class CanvasWithCommandExecutor implements ICanvas {
     private commandExecutor: ICommandExecutor;
